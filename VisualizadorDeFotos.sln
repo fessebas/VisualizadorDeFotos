@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.10.34928.147
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VisualizadorDeFotos", "VisualizadorDeFotos\VisualizadorDeFotos.csproj", "{95379F95-41BC-4478-95DE-0E2EFDAC8564}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{95379F95-41BC-4478-95DE-0E2EFDAC8564}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{95379F95-41BC-4478-95DE-0E2EFDAC8564}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{95379F95-41BC-4478-95DE-0E2EFDAC8564}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{95379F95-41BC-4478-95DE-0E2EFDAC8564}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {585DAB47-C6F1-4259-AAA9-3A11CE92D8C2}
+	EndGlobalSection
+EndGlobal
