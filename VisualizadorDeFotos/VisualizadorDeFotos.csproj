@@ -46,20 +46,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Carpeta.cs" />
-    <Compile Include="Utilidades.cs" />
-    <Compile Include="Imagen.cs" />
-    <Compile Include="Form1.cs">
+    <Compile Include="VisualizadorCarpeta.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="VisualizadorCarpeta.Designer.cs">
+      <DependentUpon>VisualizadorCarpeta.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Visualizador.cs" />
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="VisualizadorImagenes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VisualizadorImagenes.Designer.cs">
+      <DependentUpon>VisualizadorImagenes.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="VisualizadorCarpeta.resx">
+      <DependentUpon>VisualizadorCarpeta.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -69,7 +71,11 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="VisualizadorImagenes.resx">
+      <DependentUpon>VisualizadorImagenes.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -82,6 +88,39 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Galeria.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Galeria1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-galería-48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-agregar-carpeta-50.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-galería-481.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-agregar-carpeta-501.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-me-gusta.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-galería.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-agregar-carpeta.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-atrás-48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-adelante-48.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
