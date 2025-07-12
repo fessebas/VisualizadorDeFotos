@@ -60,9 +60,18 @@ namespace VisualizadorDeFotos
                     SizeMode = PictureBoxSizeMode.Zoom,
                     Margin = new Padding(10),
                     Image = Image.FromFile(archivo),
-                    Cursor = Cursors.Hand, // Para indicar que es clickeable
+                    Cursor = Cursors.Hand, //  es clickeable
                     Tag = i 
                 };
+
+                //  Cargar imagen en memoria sin bloquear el archivo
+                using (FileStream fs = new FileStream(archivo, FileMode.Open, FileAccess.Read))
+                {
+                    using (Image imgTemp = Image.FromStream(fs))
+                    {
+                        pic.Image = new Bitmap(imgTemp); // Copia que no bloquea
+                    }
+                }
 
                 // Evento de doble clic para abrir el visualizador
                 pic.DoubleClick += (s, e) =>
@@ -70,6 +79,9 @@ namespace VisualizadorDeFotos
                     int indice = (int)((PictureBox)s).Tag;
                     VisualizadorImagenes visor = new VisualizadorImagenes(archivos, indice);
                     visor.ShowDialog();
+
+                 // Cargar miniaturas actualizadas
+                    MostrarImagenesDesdeCarpeta(ruta);
                 };
 
                 FlypGaleria.Controls.Add(pic);

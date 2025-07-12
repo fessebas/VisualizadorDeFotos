@@ -32,12 +32,12 @@
             this.treeViewDirectorios = new System.Windows.Forms.TreeView();
             this.panelSuperior = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.BtnFavoritos = new System.Windows.Forms.Button();
-            this.BtnAbrirCarpeta = new System.Windows.Forms.Button();
-            this.BtnGaleria = new System.Windows.Forms.Button();
             this.PImagenes = new System.Windows.Forms.Panel();
             this.lblInfoCarpeta = new System.Windows.Forms.Label();
             this.FlypGaleria = new System.Windows.Forms.FlowLayoutPanel();
+            this.BtnFavoritos = new System.Windows.Forms.Button();
+            this.BtnAbrirCarpeta = new System.Windows.Forms.Button();
+            this.BtnGaleria = new System.Windows.Forms.Button();
             this.PIzquierdo.SuspendLayout();
             this.PImagenes.SuspendLayout();
             this.SuspendLayout();
@@ -60,11 +60,12 @@
             // treeViewDirectorios
             // 
             this.treeViewDirectorios.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
+            this.treeViewDirectorios.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.treeViewDirectorios.Font = new System.Drawing.Font("Cambria", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.treeViewDirectorios.ForeColor = System.Drawing.Color.White;
-            this.treeViewDirectorios.Location = new System.Drawing.Point(0, 188);
+            this.treeViewDirectorios.Location = new System.Drawing.Point(3, 170);
             this.treeViewDirectorios.Name = "treeViewDirectorios";
-            this.treeViewDirectorios.Size = new System.Drawing.Size(201, 468);
+            this.treeViewDirectorios.Size = new System.Drawing.Size(198, 486);
             this.treeViewDirectorios.TabIndex = 4;
             this.treeViewDirectorios.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeViewDirectorios_AfterSelect);
             // 
@@ -81,54 +82,6 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(200, 32);
             this.panel1.TabIndex = 3;
-            // 
-            // BtnFavoritos
-            // 
-            this.BtnFavoritos.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
-            this.BtnFavoritos.FlatAppearance.BorderSize = 0;
-            this.BtnFavoritos.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.BtnFavoritos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnFavoritos.Font = new System.Drawing.Font("Cambria", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnFavoritos.ForeColor = System.Drawing.Color.White;
-            this.BtnFavoritos.Image = global::VisualizadorDeFotos.Properties.Resources.icons8_me_gusta;
-            this.BtnFavoritos.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.BtnFavoritos.Location = new System.Drawing.Point(0, 140);
-            this.BtnFavoritos.Name = "BtnFavoritos";
-            this.BtnFavoritos.Size = new System.Drawing.Size(201, 42);
-            this.BtnFavoritos.TabIndex = 3;
-            this.BtnFavoritos.Text = "Favoritos";
-            this.BtnFavoritos.UseVisualStyleBackColor = false;
-            // 
-            // BtnAbrirCarpeta
-            // 
-            this.BtnAbrirCarpeta.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
-            this.BtnAbrirCarpeta.FlatAppearance.BorderSize = 0;
-            this.BtnAbrirCarpeta.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.BtnAbrirCarpeta.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnAbrirCarpeta.Image = global::VisualizadorDeFotos.Properties.Resources.icons8_agregar_carpeta;
-            this.BtnAbrirCarpeta.Location = new System.Drawing.Point(147, 79);
-            this.BtnAbrirCarpeta.Name = "BtnAbrirCarpeta";
-            this.BtnAbrirCarpeta.Size = new System.Drawing.Size(54, 43);
-            this.BtnAbrirCarpeta.TabIndex = 2;
-            this.BtnAbrirCarpeta.UseVisualStyleBackColor = false;
-            this.BtnAbrirCarpeta.Click += new System.EventHandler(this.BtnAbrirCarpeta_Click_1);
-            // 
-            // BtnGaleria
-            // 
-            this.BtnGaleria.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
-            this.BtnGaleria.FlatAppearance.BorderSize = 0;
-            this.BtnGaleria.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.BtnGaleria.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnGaleria.Font = new System.Drawing.Font("Cambria", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnGaleria.ForeColor = System.Drawing.Color.White;
-            this.BtnGaleria.Image = global::VisualizadorDeFotos.Properties.Resources.icons8_galería;
-            this.BtnGaleria.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.BtnGaleria.Location = new System.Drawing.Point(0, 79);
-            this.BtnGaleria.Name = "BtnGaleria";
-            this.BtnGaleria.Size = new System.Drawing.Size(201, 43);
-            this.BtnGaleria.TabIndex = 0;
-            this.BtnGaleria.Text = "Galeria";
-            this.BtnGaleria.UseVisualStyleBackColor = false;
             // 
             // PImagenes
             // 
@@ -160,6 +113,54 @@
             this.FlypGaleria.Name = "FlypGaleria";
             this.FlypGaleria.Size = new System.Drawing.Size(892, 577);
             this.FlypGaleria.TabIndex = 2;
+            // 
+            // BtnFavoritos
+            // 
+            this.BtnFavoritos.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
+            this.BtnFavoritos.FlatAppearance.BorderSize = 0;
+            this.BtnFavoritos.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.BtnFavoritos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnFavoritos.Font = new System.Drawing.Font("Cambria", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnFavoritos.ForeColor = System.Drawing.Color.White;
+            this.BtnFavoritos.Image = global::VisualizadorDeFotos.Properties.Resources.icons8_me_gusta1;
+            this.BtnFavoritos.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.BtnFavoritos.Location = new System.Drawing.Point(0, 118);
+            this.BtnFavoritos.Name = "BtnFavoritos";
+            this.BtnFavoritos.Size = new System.Drawing.Size(201, 36);
+            this.BtnFavoritos.TabIndex = 3;
+            this.BtnFavoritos.Text = "Favoritos";
+            this.BtnFavoritos.UseVisualStyleBackColor = false;
+            // 
+            // BtnAbrirCarpeta
+            // 
+            this.BtnAbrirCarpeta.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
+            this.BtnAbrirCarpeta.FlatAppearance.BorderSize = 0;
+            this.BtnAbrirCarpeta.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.BtnAbrirCarpeta.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnAbrirCarpeta.Image = global::VisualizadorDeFotos.Properties.Resources.icons8_agregar_carpeta1;
+            this.BtnAbrirCarpeta.Location = new System.Drawing.Point(147, 79);
+            this.BtnAbrirCarpeta.Name = "BtnAbrirCarpeta";
+            this.BtnAbrirCarpeta.Size = new System.Drawing.Size(54, 33);
+            this.BtnAbrirCarpeta.TabIndex = 2;
+            this.BtnAbrirCarpeta.UseVisualStyleBackColor = false;
+            this.BtnAbrirCarpeta.Click += new System.EventHandler(this.BtnAbrirCarpeta_Click_1);
+            // 
+            // BtnGaleria
+            // 
+            this.BtnGaleria.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
+            this.BtnGaleria.FlatAppearance.BorderSize = 0;
+            this.BtnGaleria.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.BtnGaleria.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnGaleria.Font = new System.Drawing.Font("Cambria", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnGaleria.ForeColor = System.Drawing.Color.White;
+            this.BtnGaleria.Image = global::VisualizadorDeFotos.Properties.Resources.icons8_galería1;
+            this.BtnGaleria.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.BtnGaleria.Location = new System.Drawing.Point(0, 79);
+            this.BtnGaleria.Name = "BtnGaleria";
+            this.BtnGaleria.Size = new System.Drawing.Size(201, 33);
+            this.BtnGaleria.TabIndex = 0;
+            this.BtnGaleria.Text = "Galeria";
+            this.BtnGaleria.UseVisualStyleBackColor = false;
             // 
             // SelecImagen
             // 
