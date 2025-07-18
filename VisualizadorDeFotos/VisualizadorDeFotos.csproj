@@ -149,5 +149,20 @@
   <ItemGroup>
     <None Include="Resources\icons8-información-642.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-editar-64.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-recortar-80.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-marca-de-verificación-50.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-brillo-50.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-documento-67.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

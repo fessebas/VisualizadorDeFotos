@@ -143,9 +143,39 @@ namespace VisualizadorDeFotos.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap icons8_brillo_50 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-brillo-50", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap icons8_círculo_alrededor_64 {
             get {
                 object obj = ResourceManager.GetObject("icons8-círculo-alrededor-64", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_documento_67 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-documento-67", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_editar_64 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-editar-64", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -243,6 +273,16 @@ namespace VisualizadorDeFotos.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap icons8_marca_de_verificación_50 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-marca-de-verificación-50", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap icons8_me_gusta {
             get {
                 object obj = ResourceManager.GetObject("icons8-me-gusta", resourceCulture);
@@ -256,6 +296,16 @@ namespace VisualizadorDeFotos.Properties {
         internal static System.Drawing.Bitmap icons8_me_gusta1 {
             get {
                 object obj = ResourceManager.GetObject("icons8-me-gusta1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_recortar_80 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-recortar-80", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
