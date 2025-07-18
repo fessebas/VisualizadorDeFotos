@@ -31,6 +31,9 @@
             this.panelContenedor = new System.Windows.Forms.Panel();
             this.pictureBoxVisual = new System.Windows.Forms.PictureBox();
             this.panelInfo = new System.Windows.Forms.Panel();
+            this.panelAjustes = new System.Windows.Forms.Panel();
+            this.trackContraste = new System.Windows.Forms.TrackBar();
+            this.trackBrillo = new System.Windows.Forms.TrackBar();
             this.cerrarPanel = new System.Windows.Forms.Button();
             this.lblInformación = new System.Windows.Forms.Label();
             this.lblTamaño = new System.Windows.Forms.Label();
@@ -40,32 +43,40 @@
             this.trackZoom = new System.Windows.Forms.TrackBar();
             this.cmbZoomPorcentaje = new System.Windows.Forms.ComboBox();
             this.lblZoomActual = new System.Windows.Forms.Label();
-            this.btnRotar = new System.Windows.Forms.Button();
-            this.btnEliminar = new System.Windows.Forms.Button();
-            this.btnSiguiente = new System.Windows.Forms.Button();
-            this.btnAnterior = new System.Windows.Forms.Button();
-            this.btnInfo = new System.Windows.Forms.Button();
             this.panelTop = new System.Windows.Forms.Panel();
-            this.panelBottom = new System.Windows.Forms.Panel();
-            this.panelMain = new System.Windows.Forms.Panel();
-            this.btnEditar = new System.Windows.Forms.Button();
             this.panelEditar = new System.Windows.Forms.Panel();
-            this.btnRecortar = new System.Windows.Forms.Button();
-            this.btnAjustar = new System.Windows.Forms.Button();
+            this.btnAplicarRecorte = new System.Windows.Forms.Button();
             this.btnGuardar = new System.Windows.Forms.Button();
+            this.btnAjustar = new System.Windows.Forms.Button();
+            this.btnRecortar = new System.Windows.Forms.Button();
+            this.btnEditar = new System.Windows.Forms.Button();
+            this.btnEliminar = new System.Windows.Forms.Button();
+            this.btnRotar = new System.Windows.Forms.Button();
+            this.panelBottom = new System.Windows.Forms.Panel();
+            this.pictureBoxFavorito = new System.Windows.Forms.PictureBox();
+            this.lblInfoImagen = new System.Windows.Forms.Label();
+            this.btnInfo = new System.Windows.Forms.Button();
+            this.panelMain = new System.Windows.Forms.Panel();
+            this.btnAnterior = new System.Windows.Forms.Button();
+            this.btnSiguiente = new System.Windows.Forms.Button();
             this.panelContenedor.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxVisual)).BeginInit();
             this.panelInfo.SuspendLayout();
+            this.panelAjustes.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.trackContraste)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBrillo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackZoom)).BeginInit();
             this.panelTop.SuspendLayout();
-            this.panelBottom.SuspendLayout();
-            this.panelMain.SuspendLayout();
             this.panelEditar.SuspendLayout();
+            this.panelBottom.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxFavorito)).BeginInit();
+            this.panelMain.SuspendLayout();
             this.SuspendLayout();
             // 
             // panelContenedor
             // 
             this.panelContenedor.AutoScroll = true;
+            this.panelContenedor.Controls.Add(this.panelAjustes);
             this.panelContenedor.Controls.Add(this.pictureBoxVisual);
             this.panelContenedor.Controls.Add(this.panelInfo);
             this.panelContenedor.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -83,6 +94,10 @@
             this.pictureBoxVisual.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.pictureBoxVisual.TabIndex = 0;
             this.pictureBoxVisual.TabStop = false;
+            this.pictureBoxVisual.Paint += new System.Windows.Forms.PaintEventHandler(this.pictureBoxVisual_Paint);
+            this.pictureBoxVisual.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBoxVisual_MouseDown);
+            this.pictureBoxVisual.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pictureBoxVisual_MouseMove);
+            this.pictureBoxVisual.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pictureBoxVisual_MouseUp);
             // 
             // panelInfo
             // 
@@ -98,6 +113,33 @@
             this.panelInfo.Size = new System.Drawing.Size(263, 524);
             this.panelInfo.TabIndex = 10;
             this.panelInfo.Visible = false;
+            // 
+            // panelAjustes
+            // 
+            this.panelAjustes.Controls.Add(this.trackContraste);
+            this.panelAjustes.Controls.Add(this.trackBrillo);
+            this.panelAjustes.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panelAjustes.Location = new System.Drawing.Point(640, 0);
+            this.panelAjustes.Name = "panelAjustes";
+            this.panelAjustes.Size = new System.Drawing.Size(315, 524);
+            this.panelAjustes.TabIndex = 7;
+            this.panelAjustes.Visible = false;
+            // 
+            // trackContraste
+            // 
+            this.trackContraste.Location = new System.Drawing.Point(16, 87);
+            this.trackContraste.Name = "trackContraste";
+            this.trackContraste.Size = new System.Drawing.Size(247, 45);
+            this.trackContraste.TabIndex = 1;
+            this.trackContraste.ValueChanged += new System.EventHandler(this.trackContraste_ValueChanged);
+            // 
+            // trackBrillo
+            // 
+            this.trackBrillo.Location = new System.Drawing.Point(16, 25);
+            this.trackBrillo.Name = "trackBrillo";
+            this.trackBrillo.Size = new System.Drawing.Size(247, 45);
+            this.trackBrillo.TabIndex = 0;
+            this.trackBrillo.ValueChanged += new System.EventHandler(this.trackBrillo_ValueChanged);
             // 
             // cerrarPanel
             // 
@@ -203,20 +245,79 @@
             this.lblZoomActual.TabIndex = 8;
             this.lblZoomActual.Text = "label1";
             // 
-            // btnRotar
+            // panelTop
             // 
-            this.btnRotar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
-            this.btnRotar.FlatAppearance.BorderSize = 0;
-            this.btnRotar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnRotar.Font = new System.Drawing.Font("Cambria", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRotar.ForeColor = System.Drawing.Color.White;
-            this.btnRotar.Image = global::VisualizadorDeFotos.Properties.Resources.icons8_círculo_alrededor_64;
-            this.btnRotar.Location = new System.Drawing.Point(205, 39);
-            this.btnRotar.Name = "btnRotar";
-            this.btnRotar.Size = new System.Drawing.Size(45, 30);
-            this.btnRotar.TabIndex = 4;
-            this.btnRotar.UseVisualStyleBackColor = false;
-            this.btnRotar.Click += new System.EventHandler(this.btnRotar_Click);
+            this.panelTop.Controls.Add(this.panelEditar);
+            this.panelTop.Controls.Add(this.btnEditar);
+            this.panelTop.Controls.Add(this.btnEliminar);
+            this.panelTop.Controls.Add(this.btnRotar);
+            this.panelTop.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panelTop.Location = new System.Drawing.Point(0, 0);
+            this.panelTop.Name = "panelTop";
+            this.panelTop.Size = new System.Drawing.Size(1273, 75);
+            this.panelTop.TabIndex = 12;
+            // 
+            // panelEditar
+            // 
+            this.panelEditar.Controls.Add(this.btnAplicarRecorte);
+            this.panelEditar.Controls.Add(this.btnGuardar);
+            this.panelEditar.Controls.Add(this.btnAjustar);
+            this.panelEditar.Controls.Add(this.btnRecortar);
+            this.panelEditar.Location = new System.Drawing.Point(380, 12);
+            this.panelEditar.Name = "panelEditar";
+            this.panelEditar.Size = new System.Drawing.Size(569, 63);
+            this.panelEditar.TabIndex = 6;
+            this.panelEditar.Visible = false;
+            // 
+            // btnAplicarRecorte
+            // 
+            this.btnAplicarRecorte.Location = new System.Drawing.Point(117, 33);
+            this.btnAplicarRecorte.Name = "btnAplicarRecorte";
+            this.btnAplicarRecorte.Size = new System.Drawing.Size(75, 23);
+            this.btnAplicarRecorte.TabIndex = 3;
+            this.btnAplicarRecorte.Text = "A. Recorte";
+            this.btnAplicarRecorte.UseVisualStyleBackColor = true;
+            this.btnAplicarRecorte.Click += new System.EventHandler(this.btnAplicarRecorte_Click);
+            // 
+            // btnGuardar
+            // 
+            this.btnGuardar.Location = new System.Drawing.Point(470, 33);
+            this.btnGuardar.Name = "btnGuardar";
+            this.btnGuardar.Size = new System.Drawing.Size(75, 23);
+            this.btnGuardar.TabIndex = 2;
+            this.btnGuardar.Text = "Guardar";
+            this.btnGuardar.UseVisualStyleBackColor = true;
+            this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
+            // 
+            // btnAjustar
+            // 
+            this.btnAjustar.Location = new System.Drawing.Point(261, 34);
+            this.btnAjustar.Name = "btnAjustar";
+            this.btnAjustar.Size = new System.Drawing.Size(75, 23);
+            this.btnAjustar.TabIndex = 1;
+            this.btnAjustar.Text = "Ajustes";
+            this.btnAjustar.UseVisualStyleBackColor = true;
+            this.btnAjustar.Click += new System.EventHandler(this.btnAjustar_Click);
+            // 
+            // btnRecortar
+            // 
+            this.btnRecortar.Location = new System.Drawing.Point(36, 33);
+            this.btnRecortar.Name = "btnRecortar";
+            this.btnRecortar.Size = new System.Drawing.Size(75, 23);
+            this.btnRecortar.TabIndex = 0;
+            this.btnRecortar.Text = "Recortar";
+            this.btnRecortar.UseVisualStyleBackColor = true;
+            this.btnRecortar.Click += new System.EventHandler(this.btnRecortar_Click);
+            // 
+            // btnEditar
+            // 
+            this.btnEditar.Location = new System.Drawing.Point(273, 45);
+            this.btnEditar.Name = "btnEditar";
+            this.btnEditar.Size = new System.Drawing.Size(75, 23);
+            this.btnEditar.TabIndex = 5;
+            this.btnEditar.Text = "Editar";
+            this.btnEditar.UseVisualStyleBackColor = true;
+            this.btnEditar.Click += new System.EventHandler(this.btnEditar_Click);
             // 
             // btnEliminar
             // 
@@ -233,19 +334,79 @@
             this.btnEliminar.UseVisualStyleBackColor = false;
             this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
             // 
-            // btnSiguiente
+            // btnRotar
             // 
-            this.btnSiguiente.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
-            this.btnSiguiente.Dock = System.Windows.Forms.DockStyle.Right;
-            this.btnSiguiente.FlatAppearance.BorderSize = 0;
-            this.btnSiguiente.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSiguiente.Image = global::VisualizadorDeFotos.Properties.Resources.icons8_adelante_48;
-            this.btnSiguiente.Location = new System.Drawing.Point(1218, 0);
-            this.btnSiguiente.Name = "btnSiguiente";
-            this.btnSiguiente.Size = new System.Drawing.Size(55, 524);
-            this.btnSiguiente.TabIndex = 2;
-            this.btnSiguiente.UseVisualStyleBackColor = false;
-            this.btnSiguiente.Click += new System.EventHandler(this.btnSiguiente_Click);
+            this.btnRotar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
+            this.btnRotar.FlatAppearance.BorderSize = 0;
+            this.btnRotar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnRotar.Font = new System.Drawing.Font("Cambria", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRotar.ForeColor = System.Drawing.Color.White;
+            this.btnRotar.Image = global::VisualizadorDeFotos.Properties.Resources.icons8_círculo_alrededor_64;
+            this.btnRotar.Location = new System.Drawing.Point(205, 39);
+            this.btnRotar.Name = "btnRotar";
+            this.btnRotar.Size = new System.Drawing.Size(45, 30);
+            this.btnRotar.TabIndex = 4;
+            this.btnRotar.UseVisualStyleBackColor = false;
+            this.btnRotar.Click += new System.EventHandler(this.btnRotar_Click);
+            // 
+            // panelBottom
+            // 
+            this.panelBottom.Controls.Add(this.pictureBoxFavorito);
+            this.panelBottom.Controls.Add(this.lblInfoImagen);
+            this.panelBottom.Controls.Add(this.btnInfo);
+            this.panelBottom.Controls.Add(this.trackZoom);
+            this.panelBottom.Controls.Add(this.lblZoomActual);
+            this.panelBottom.Controls.Add(this.cmbZoomPorcentaje);
+            this.panelBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panelBottom.Location = new System.Drawing.Point(0, 599);
+            this.panelBottom.Name = "panelBottom";
+            this.panelBottom.Size = new System.Drawing.Size(1273, 65);
+            this.panelBottom.TabIndex = 1;
+            // 
+            // pictureBoxFavorito
+            // 
+            this.pictureBoxFavorito.Image = global::VisualizadorDeFotos.Properties.Resources.star_empty;
+            this.pictureBoxFavorito.Location = new System.Drawing.Point(72, 14);
+            this.pictureBoxFavorito.Name = "pictureBoxFavorito";
+            this.pictureBoxFavorito.Size = new System.Drawing.Size(36, 32);
+            this.pictureBoxFavorito.TabIndex = 13;
+            this.pictureBoxFavorito.TabStop = false;
+            this.pictureBoxFavorito.Click += new System.EventHandler(this.pictureBoxFavorito_Click);
+            // 
+            // lblInfoImagen
+            // 
+            this.lblInfoImagen.AutoSize = true;
+            this.lblInfoImagen.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblInfoImagen.ForeColor = System.Drawing.Color.White;
+            this.lblInfoImagen.Location = new System.Drawing.Point(508, 20);
+            this.lblInfoImagen.Name = "lblInfoImagen";
+            this.lblInfoImagen.Size = new System.Drawing.Size(51, 19);
+            this.lblInfoImagen.TabIndex = 12;
+            this.lblInfoImagen.Text = "label1";
+            // 
+            // btnInfo
+            // 
+            this.btnInfo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
+            this.btnInfo.FlatAppearance.BorderSize = 0;
+            this.btnInfo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnInfo.Image = global::VisualizadorDeFotos.Properties.Resources.icons8_información_642;
+            this.btnInfo.Location = new System.Drawing.Point(470, 14);
+            this.btnInfo.Name = "btnInfo";
+            this.btnInfo.Size = new System.Drawing.Size(32, 32);
+            this.btnInfo.TabIndex = 11;
+            this.btnInfo.UseVisualStyleBackColor = false;
+            this.btnInfo.Click += new System.EventHandler(this.btnInfo_Click_1);
+            // 
+            // panelMain
+            // 
+            this.panelMain.Controls.Add(this.btnAnterior);
+            this.panelMain.Controls.Add(this.panelContenedor);
+            this.panelMain.Controls.Add(this.btnSiguiente);
+            this.panelMain.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelMain.Location = new System.Drawing.Point(0, 75);
+            this.panelMain.Name = "panelMain";
+            this.panelMain.Size = new System.Drawing.Size(1273, 524);
+            this.panelMain.TabIndex = 13;
             // 
             // btnAnterior
             // 
@@ -261,99 +422,19 @@
             this.btnAnterior.UseVisualStyleBackColor = false;
             this.btnAnterior.Click += new System.EventHandler(this.btnAnterior_Click);
             // 
-            // btnInfo
+            // btnSiguiente
             // 
-            this.btnInfo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
-            this.btnInfo.FlatAppearance.BorderSize = 0;
-            this.btnInfo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnInfo.Image = global::VisualizadorDeFotos.Properties.Resources.icons8_información_642;
-            this.btnInfo.Location = new System.Drawing.Point(470, 14);
-            this.btnInfo.Name = "btnInfo";
-            this.btnInfo.Size = new System.Drawing.Size(32, 32);
-            this.btnInfo.TabIndex = 11;
-            this.btnInfo.UseVisualStyleBackColor = false;
-            this.btnInfo.Click += new System.EventHandler(this.btnInfo_Click_1);
-            // 
-            // panelTop
-            // 
-            this.panelTop.Controls.Add(this.panelEditar);
-            this.panelTop.Controls.Add(this.btnEditar);
-            this.panelTop.Controls.Add(this.btnEliminar);
-            this.panelTop.Controls.Add(this.btnRotar);
-            this.panelTop.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panelTop.Location = new System.Drawing.Point(0, 0);
-            this.panelTop.Name = "panelTop";
-            this.panelTop.Size = new System.Drawing.Size(1273, 75);
-            this.panelTop.TabIndex = 12;
-            // 
-            // panelBottom
-            // 
-            this.panelBottom.Controls.Add(this.btnInfo);
-            this.panelBottom.Controls.Add(this.trackZoom);
-            this.panelBottom.Controls.Add(this.lblZoomActual);
-            this.panelBottom.Controls.Add(this.cmbZoomPorcentaje);
-            this.panelBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panelBottom.Location = new System.Drawing.Point(0, 599);
-            this.panelBottom.Name = "panelBottom";
-            this.panelBottom.Size = new System.Drawing.Size(1273, 65);
-            this.panelBottom.TabIndex = 1;
-            // 
-            // panelMain
-            // 
-            this.panelMain.Controls.Add(this.btnAnterior);
-            this.panelMain.Controls.Add(this.panelContenedor);
-            this.panelMain.Controls.Add(this.btnSiguiente);
-            this.panelMain.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelMain.Location = new System.Drawing.Point(0, 75);
-            this.panelMain.Name = "panelMain";
-            this.panelMain.Size = new System.Drawing.Size(1273, 524);
-            this.panelMain.TabIndex = 13;
-            // 
-            // btnEditar
-            // 
-            this.btnEditar.Location = new System.Drawing.Point(273, 45);
-            this.btnEditar.Name = "btnEditar";
-            this.btnEditar.Size = new System.Drawing.Size(75, 23);
-            this.btnEditar.TabIndex = 5;
-            this.btnEditar.UseVisualStyleBackColor = true;
-            // 
-            // panelEditar
-            // 
-            this.panelEditar.Controls.Add(this.btnGuardar);
-            this.panelEditar.Controls.Add(this.btnAjustar);
-            this.panelEditar.Controls.Add(this.btnRecortar);
-            this.panelEditar.Location = new System.Drawing.Point(388, 12);
-            this.panelEditar.Name = "panelEditar";
-            this.panelEditar.Size = new System.Drawing.Size(561, 60);
-            this.panelEditar.TabIndex = 6;
-            this.panelEditar.Visible = false;
-            // 
-            // btnRecortar
-            // 
-            this.btnRecortar.Location = new System.Drawing.Point(54, 33);
-            this.btnRecortar.Name = "btnRecortar";
-            this.btnRecortar.Size = new System.Drawing.Size(75, 23);
-            this.btnRecortar.TabIndex = 0;
-            this.btnRecortar.Text = "button1";
-            this.btnRecortar.UseVisualStyleBackColor = true;
-            // 
-            // btnAjustar
-            // 
-            this.btnAjustar.Location = new System.Drawing.Point(154, 33);
-            this.btnAjustar.Name = "btnAjustar";
-            this.btnAjustar.Size = new System.Drawing.Size(75, 23);
-            this.btnAjustar.TabIndex = 1;
-            this.btnAjustar.Text = "button1";
-            this.btnAjustar.UseVisualStyleBackColor = true;
-            // 
-            // btnGuardar
-            // 
-            this.btnGuardar.Location = new System.Drawing.Point(470, 33);
-            this.btnGuardar.Name = "btnGuardar";
-            this.btnGuardar.Size = new System.Drawing.Size(75, 23);
-            this.btnGuardar.TabIndex = 2;
-            this.btnGuardar.Text = "button1";
-            this.btnGuardar.UseVisualStyleBackColor = true;
+            this.btnSiguiente.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
+            this.btnSiguiente.Dock = System.Windows.Forms.DockStyle.Right;
+            this.btnSiguiente.FlatAppearance.BorderSize = 0;
+            this.btnSiguiente.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSiguiente.Image = global::VisualizadorDeFotos.Properties.Resources.icons8_adelante_48;
+            this.btnSiguiente.Location = new System.Drawing.Point(1218, 0);
+            this.btnSiguiente.Name = "btnSiguiente";
+            this.btnSiguiente.Size = new System.Drawing.Size(55, 524);
+            this.btnSiguiente.TabIndex = 2;
+            this.btnSiguiente.UseVisualStyleBackColor = false;
+            this.btnSiguiente.Click += new System.EventHandler(this.btnSiguiente_Click);
             // 
             // VisualizadorImagenes
             // 
@@ -372,12 +453,17 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxVisual)).EndInit();
             this.panelInfo.ResumeLayout(false);
             this.panelInfo.PerformLayout();
+            this.panelAjustes.ResumeLayout(false);
+            this.panelAjustes.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.trackContraste)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBrillo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackZoom)).EndInit();
             this.panelTop.ResumeLayout(false);
+            this.panelEditar.ResumeLayout(false);
             this.panelBottom.ResumeLayout(false);
             this.panelBottom.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxFavorito)).EndInit();
             this.panelMain.ResumeLayout(false);
-            this.panelEditar.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -405,9 +491,15 @@
         private System.Windows.Forms.Panel panelBottom;
         private System.Windows.Forms.Panel panelMain;
         private System.Windows.Forms.Panel panelEditar;
-        private System.Windows.Forms.Button btnAjustar;
         private System.Windows.Forms.Button btnRecortar;
         private System.Windows.Forms.Button btnEditar;
         private System.Windows.Forms.Button btnGuardar;
+        private System.Windows.Forms.PictureBox pictureBoxFavorito;
+        private System.Windows.Forms.Label lblInfoImagen;
+        private System.Windows.Forms.Button btnAplicarRecorte;
+        private System.Windows.Forms.Panel panelAjustes;
+        private System.Windows.Forms.TrackBar trackBrillo;
+        private System.Windows.Forms.TrackBar trackContraste;
+        private System.Windows.Forms.Button btnAjustar;
     }
 }
