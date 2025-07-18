@@ -140,5 +140,11 @@ namespace VisualizadorDeFotos
             string nombreCarpeta = Path.GetFileName(ruta);
             lblInfoCarpeta.Text = $"{nombreCarpeta} - {archivos.Length} fotos";
         }
+
+        private void BtnFavoritos_Click(object sender, EventArgs e)
+        {
+            
+        }
+       
     }
 }

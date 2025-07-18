@@ -32,9 +32,13 @@ namespace VisualizadorDeFotos
         private float contraste = 1.0f;
 
         private Image imagenOriginalBase; // Nueva copia base sin efectos
-       
+        private Bitmap imagenEditable; // Nueva imagen con recortes/ajustes acumulados
+        private string rutaImagenActual;
 
+        private Bitmap imagenRecortada = null;
+        private Bitmap imagenAjustada = null;
 
+        
         public VisualizadorImagenes()
         {
             InitializeComponent();
@@ -71,22 +75,32 @@ namespace VisualizadorDeFotos
                 imagenOriginal = null;
             }
 
-            //  Carga sin bloquear el archivo
-            using (FileStream fs = new FileStream(imagenes[indiceActual], FileMode.Open, FileAccess.Read))
+            //  Guardamos ruta actual de la imagen cargada
+            rutaImagenActual = imagenes[indiceActual]; 
+
+            // Carga sin bloquear el archivo
+            using (FileStream fs = new FileStream(rutaImagenActual, FileMode.Open, FileAccess.Read))
             {
                 Image temp = Image.FromStream(fs);
-                imagenOriginal = new Bitmap(temp); // Clonamos para evitar bloqueo
-                imagenOriginalBase = new Bitmap(temp);
+                imagenOriginal = new Bitmap(temp);      // Clonamos para evitar bloqueo
+                imagenOriginalBase = new Bitmap(temp);  // Base para aplicar ajustes
+                imagenEditable = new Bitmap(temp);      // Imagen que se modificará y guardará
             }
 
-            CalcularZoomInicial();  // 🔍 Zoom inicial al abrir
-            AplicarZoomYMostrar();  // 🎯 Mostrar imagen con zoom actual
+            CalcularZoomInicial();  //  Zoom inicial al abrir
+            AplicarZoomYMostrar();  //  Mostrar imagen con zoom actual
 
             if (infoVisible && panelInfo.Visible)
-                MostrarInformacionImagen(imagenes[indiceActual]);
+                MostrarInformacionImagen(rutaImagenActual);
 
-            MostrarInfoImagenBreve(imagenes[indiceActual]);
+            MostrarInfoImagenBreve(rutaImagenActual);
 
+            // 🔁 Reiniciar sliders y valores de brillo/contraste si quieres (opcional)
+            trackBrillo.Value = 0;
+            trackContraste.Value = 0;
+            brillo = 0;
+            contraste = 1.0f;
+            
         }
 
         private void CalcularZoomInicial()
@@ -154,41 +168,46 @@ namespace VisualizadorDeFotos
             if (imagenes.Length == 0 || indiceActual < 0 || indiceActual >= imagenes.Length)
                 return;
 
-            string rutaImagen = imagenes[indiceActual];
+            string rutaOriginal = imagenes[indiceActual]; // Imagen original a eliminar
 
-            // 🔒 Confirmación antes de eliminar
             var confirmar = MessageBox.Show("¿Estás seguro de que deseas eliminar esta imagen?", "Confirmar eliminación", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-
             if (confirmar != DialogResult.Yes)
                 return;
 
             try
             {
-                //  Liberar el PictureBox antes de eliminar el archivo
-                if (pictureBoxVisual.Image != null)
-                {
-                    pictureBoxVisual.Image.Dispose();
-                    pictureBoxVisual.Image = null;
-                }
+                //  Liberar todas las referencias a imágenes
+                pictureBoxVisual.Image?.Dispose();
+                pictureBoxVisual.Image = null;
 
-                //  Liberar imagenOriginal si está cargada
-                if (imagenOriginal != null)
-                {
-                    imagenOriginal.Dispose();
-                    imagenOriginal = null;
-                }
+                imagenOriginal?.Dispose();
+                imagenOriginal = null;
 
-                //  Eliminar el archivo físicamente
-                File.Delete(rutaImagen);
+                imagenOriginalBase?.Dispose();
+                imagenOriginalBase = null;
 
-                //  Actualiza las imágenes
-                imagenes = imagenes.Where(img => img != rutaImagen).ToArray();
+                imagenRecortada?.Dispose();
+                imagenRecortada = null;
+
+                imagenAjustada?.Dispose();
+                imagenAjustada = null;
+
+                //  Forzar recolección de basura para liberar manejadores de archivo
+                GC.Collect();
+                GC.WaitForPendingFinalizers();
+
+                //  Eliminar la imagen del disco
+                File.Delete(rutaOriginal);
+
+                //  Actualizar lista de imágenes
+                imagenes = imagenes.Where(img => img != rutaOriginal).ToArray();
 
                 MessageBox.Show("Imagen eliminada correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
+                //  Verificar si quedan imágenes
                 if (imagenes.Length == 0)
                 {
-                    this.Close(); // Se cierra si no hay más imágenes
+                    this.Close(); // Cierra el visor si no hay más imágenes
                     return;
                 }
 
@@ -355,10 +374,10 @@ namespace VisualizadorDeFotos
             panelInfo.Visible = false;
             panelInfo.Dock = DockStyle.None;
 
-            infoVisible = false; // <- actualizamos la variable de estado
+            infoVisible = false; //  actualizamos la variable de estado
 
             panelContenedor.Width = this.ClientSize.Width;
-            AplicarZoomYMostrar(); // <- recentramos la imagen correctamente
+            AplicarZoomYMostrar(); //  recentramos la imagen correctamente
         }
 
         private void btnInfo_Click_1(object sender, EventArgs e)
@@ -395,6 +414,7 @@ namespace VisualizadorDeFotos
             panelEditar.Visible = !panelEditar.Visible;
         }
 
+       
         private void pictureBoxFavorito_Click(object sender, EventArgs e)
         {
             esFavorito = !esFavorito;
@@ -410,8 +430,7 @@ namespace VisualizadorDeFotos
             estaArrastrando = false;
             rectanguloRecorte = Rectangle.Empty;
             btnAplicarRecorte.Visible = false;
-
-            // Quitar el MessageBox innecesario
+   
             pictureBoxVisual.Cursor = Cursors.Cross; // Cursor tipo cruz
         }
 
@@ -422,16 +441,27 @@ namespace VisualizadorDeFotos
 
         private void btnGuardar_Click(object sender, EventArgs e)
         {
-            if (imagenAjustada == null) return;
+            if (imagenEditable == null)
+            {
+                MessageBox.Show("No hay cambios para guardar.");
+                return;
+            }
 
-            string rutaOriginal = rutaDeLaImagenCargada; // Debes tener esto guardado al abrir la imagen
+            string rutaOriginal = imagenes[indiceActual];
             string carpeta = Path.GetDirectoryName(rutaOriginal);
             string nombreSinExtension = Path.GetFileNameWithoutExtension(rutaOriginal);
             string extension = Path.GetExtension(rutaOriginal);
             string nuevaRuta = Path.Combine(carpeta, nombreSinExtension + "_editado" + extension);
 
-            imagenAjustada.Save(nuevaRuta);
-            MessageBox.Show("Imagen guardada como: " + nuevaRuta);
+            try
+            {
+                imagenEditable.Save(nuevaRuta);
+                MessageBox.Show("Imagen guardada como:\n" + nuevaRuta, "Guardado", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al guardar la imagen:\n" + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void btnAplicarRecorte_Click(object sender, EventArgs e)
@@ -439,7 +469,7 @@ namespace VisualizadorDeFotos
             if (imagenOriginal == null || rectanguloRecorte == Rectangle.Empty)
                 return;
 
-            Bitmap bmpOriginal = new Bitmap(pictureBoxVisual.Image);
+            Bitmap bmpOriginal = new Bitmap(imagenOriginal);
             Rectangle recorteReal = new Rectangle(
                 (int)(rectanguloRecorte.X / zoom),
                 (int)(rectanguloRecorte.Y / zoom),
@@ -452,8 +482,14 @@ namespace VisualizadorDeFotos
 
             Bitmap bmpRecortado = bmpOriginal.Clone(recorteReal, bmpOriginal.PixelFormat);
 
-            imagenOriginal.Dispose();
-            imagenOriginal = bmpRecortado;
+            imagenEditable?.Dispose();
+            imagenEditable = bmpRecortado;
+
+            imagenOriginalBase?.Dispose();
+            imagenOriginalBase = (Bitmap)bmpRecortado.Clone();
+
+            imagenOriginal?.Dispose();
+            imagenOriginal = (Bitmap)bmpRecortado.Clone();
 
             modoRecorte = false;
             btnAplicarRecorte.Visible = false;
@@ -463,14 +499,12 @@ namespace VisualizadorDeFotos
         }
 
         private void trackBrillo_ValueChanged(object sender, EventArgs e)
-        {
-            brillo = trackBrillo.Value / 100f;
+        {        
             AplicarAjustes(); // Se aplica directamente sin esperar nada
         }
 
         private void trackContraste_ValueChanged(object sender, EventArgs e)
-        {
-            contraste = trackContraste.Value / 100f;
+        {            
             AplicarAjustes();
         }
        
@@ -479,15 +513,20 @@ namespace VisualizadorDeFotos
             if (imagenOriginalBase == null)
                 return;
 
+            // Suponiendo que los valores del TrackBar van de -100 a 100
+            float valorBrillo = trackBrillo.Value / 100f;  // -1.0 a 1.0
+            float valorContraste = (100f + trackContraste.Value) / 100f; // Normalizado: 0.0 a 2.0
+
             Bitmap imagenAjustada = new Bitmap(imagenOriginalBase.Width, imagenOriginalBase.Height);
+
             using (Graphics g = Graphics.FromImage(imagenAjustada))
             {
                 float[][] ptsArray = {
-            new float[] { contraste, 0, 0, 0, 0 },
-            new float[] { 0, contraste, 0, 0, 0 },
-            new float[] { 0, 0, contraste, 0, 0 },
+            new float[] { valorContraste, 0, 0, 0, 0 },
+            new float[] { 0, valorContraste, 0, 0, 0 },
+            new float[] { 0, 0, valorContraste, 0, 0 },
             new float[] { 0, 0, 0, 1f, 0 },
-            new float[] { brillo, brillo, brillo, 0, 1 }
+            new float[] { valorBrillo, valorBrillo, valorBrillo, 0, 1 }
         };
 
                 ColorMatrix cm = new ColorMatrix(ptsArray);
@@ -500,10 +539,12 @@ namespace VisualizadorDeFotos
                     GraphicsUnit.Pixel, ia);
             }
 
-            // Reemplazar la imagen actual
-            pictureBoxVisual.Image?.Dispose();
+            imagenEditable?.Dispose();
+            imagenEditable = (Bitmap)imagenAjustada.Clone();
+
             imagenOriginal?.Dispose();
-            imagenOriginal = new Bitmap(imagenAjustada); // Se mantiene como nueva imagen base activa
+            imagenOriginal = (Bitmap)imagenAjustada.Clone();
+
             pictureBoxVisual.Image = imagenAjustada;
             pictureBoxVisual.Size = imagenAjustada.Size;
 

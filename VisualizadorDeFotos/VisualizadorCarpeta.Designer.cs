@@ -32,12 +32,12 @@
             this.treeViewDirectorios = new System.Windows.Forms.TreeView();
             this.panelSuperior = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.PImagenes = new System.Windows.Forms.Panel();
-            this.lblInfoCarpeta = new System.Windows.Forms.Label();
-            this.FlypGaleria = new System.Windows.Forms.FlowLayoutPanel();
             this.BtnFavoritos = new System.Windows.Forms.Button();
             this.BtnAbrirCarpeta = new System.Windows.Forms.Button();
             this.BtnGaleria = new System.Windows.Forms.Button();
+            this.PImagenes = new System.Windows.Forms.Panel();
+            this.lblInfoCarpeta = new System.Windows.Forms.Label();
+            this.FlypGaleria = new System.Windows.Forms.FlowLayoutPanel();
             this.PIzquierdo.SuspendLayout();
             this.PImagenes.SuspendLayout();
             this.SuspendLayout();
@@ -83,37 +83,6 @@
             this.panel1.Size = new System.Drawing.Size(200, 32);
             this.panel1.TabIndex = 3;
             // 
-            // PImagenes
-            // 
-            this.PImagenes.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
-            this.PImagenes.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.PImagenes.Controls.Add(this.lblInfoCarpeta);
-            this.PImagenes.Controls.Add(this.FlypGaleria);
-            this.PImagenes.Location = new System.Drawing.Point(201, 0);
-            this.PImagenes.Name = "PImagenes";
-            this.PImagenes.Size = new System.Drawing.Size(892, 656);
-            this.PImagenes.TabIndex = 3;
-            // 
-            // lblInfoCarpeta
-            // 
-            this.lblInfoCarpeta.AutoSize = true;
-            this.lblInfoCarpeta.Font = new System.Drawing.Font("Cambria", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblInfoCarpeta.ForeColor = System.Drawing.Color.White;
-            this.lblInfoCarpeta.Location = new System.Drawing.Point(5, 43);
-            this.lblInfoCarpeta.Name = "lblInfoCarpeta";
-            this.lblInfoCarpeta.Size = new System.Drawing.Size(0, 22);
-            this.lblInfoCarpeta.TabIndex = 3;
-            // 
-            // FlypGaleria
-            // 
-            this.FlypGaleria.AutoScroll = true;
-            this.FlypGaleria.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
-            this.FlypGaleria.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.FlypGaleria.Location = new System.Drawing.Point(-1, 78);
-            this.FlypGaleria.Name = "FlypGaleria";
-            this.FlypGaleria.Size = new System.Drawing.Size(892, 577);
-            this.FlypGaleria.TabIndex = 2;
-            // 
             // BtnFavoritos
             // 
             this.BtnFavoritos.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
@@ -130,6 +99,7 @@
             this.BtnFavoritos.TabIndex = 3;
             this.BtnFavoritos.Text = "Favoritos";
             this.BtnFavoritos.UseVisualStyleBackColor = false;
+            this.BtnFavoritos.Click += new System.EventHandler(this.BtnFavoritos_Click);
             // 
             // BtnAbrirCarpeta
             // 
@@ -161,6 +131,37 @@
             this.BtnGaleria.TabIndex = 0;
             this.BtnGaleria.Text = "Galeria";
             this.BtnGaleria.UseVisualStyleBackColor = false;
+            // 
+            // PImagenes
+            // 
+            this.PImagenes.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
+            this.PImagenes.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.PImagenes.Controls.Add(this.lblInfoCarpeta);
+            this.PImagenes.Controls.Add(this.FlypGaleria);
+            this.PImagenes.Location = new System.Drawing.Point(201, 0);
+            this.PImagenes.Name = "PImagenes";
+            this.PImagenes.Size = new System.Drawing.Size(892, 656);
+            this.PImagenes.TabIndex = 3;
+            // 
+            // lblInfoCarpeta
+            // 
+            this.lblInfoCarpeta.AutoSize = true;
+            this.lblInfoCarpeta.Font = new System.Drawing.Font("Cambria", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblInfoCarpeta.ForeColor = System.Drawing.Color.White;
+            this.lblInfoCarpeta.Location = new System.Drawing.Point(5, 43);
+            this.lblInfoCarpeta.Name = "lblInfoCarpeta";
+            this.lblInfoCarpeta.Size = new System.Drawing.Size(0, 22);
+            this.lblInfoCarpeta.TabIndex = 3;
+            // 
+            // FlypGaleria
+            // 
+            this.FlypGaleria.AutoScroll = true;
+            this.FlypGaleria.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
+            this.FlypGaleria.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.FlypGaleria.Location = new System.Drawing.Point(-1, 78);
+            this.FlypGaleria.Name = "FlypGaleria";
+            this.FlypGaleria.Size = new System.Drawing.Size(892, 577);
+            this.FlypGaleria.TabIndex = 2;
             // 
             // SelecImagen
             // 
